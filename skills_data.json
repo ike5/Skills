@@ -1,0 +1,214 @@
+{
+  "skills": [
+    {
+      "title": "Frontend Design",
+      "category": "Frontend Development",
+      "description": "Create clean, functional interfaces with optimal user experience through modular component design and performance-focused implementation.",
+      "guidelines": [
+        "Keep components small, focused, and adhering to single responsibility principle",
+        "Use React hooks appropriately, avoid prop drilling, leverage context for global state",
+        "Implement TypeScript for robust type checking",
+        "Use React.memo(), useMemo(), useCallback(), code splitting with React.lazy()",
+        "Use functional components with hooks over class components",
+        "Context API for infrequently changing global state",
+        "Avoid creating overly complex abstractions"
+      ]
+    },
+    {
+      "title": "Web Artifacts Builder",
+      "category": "Backend Development",
+      "description": "Create reusable, maintainable web projects through disciplined architectural principles and modular design patterns.",
+      "guidelines": [
+        "Use clear directory structure (models/, services/, controllers/, utils/, config/, tests/)",
+        "Ensure each file has one clear purpose and single responsibility",
+        "Separate business logic from controllers/routes using service classes",
+        "Adopt domain-driven design approach for complex systems",
+        "Implement comprehensive testing for critical workflows",
+        "Avoid mixing business logic with presentation/route handling",
+        "Use thin controllers focused on orchestration"
+      ]
+    },
+    {
+      "title": "MCP Builder",
+      "category": "Software Architecture",
+      "description": "Implement robust object-oriented design patterns with clear separation between data models, business logic, and presentation layers.",
+      "guidelines": [
+        "Prefer object-oriented programming (OOP) over procedural programming",
+        "Bundle behavior with data through classes for proper encapsulation",
+        "Favor composition over inheritance for code reuse",
+        "Use domain objects representing real concepts rather than raw data",
+        "Keep classes under 150 lines, functions under 40 lines",
+        "Refactor when signs of complexity appear",
+        "Avoid deep inheritance hierarchies (max 2 levels)"
+      ]
+    },
+    {
+      "title": "Skill Creator",
+      "category": "AI Development",
+      "description": "Design and implement reusable, maintainable skills/components through disciplined coding practices and AI-assisted development.",
+      "guidelines": [
+        "Modify existing structures instead of rewriting large sections",
+        "Maintain established patterns and architectural conventions",
+        "Break complex features into smaller classes and services",
+        "Follow naming conventions (PascalCase for classes, snake_case for functions)",
+        "Use clear, intention-revealing names for all code elements",
+        "Prioritize readability above all other coding considerations",
+        "Implement structured error handling throughout the codebase"
+      ]
+    },
+    {
+      "title": "Object-Oriented Programming",
+      "category": "General Programming",
+      "description": "Organize related logic into classes instead of loose functions, encapsulate behavior with data, and keep classes focused on single responsibility.",
+      "guidelines": [
+        "Organize related logic into classes instead of loose functions",
+        "Encapsulate behavior with the data it operates on",
+        "Keep classes focused on a single responsibility",
+        "Prefer composition over inheritance",
+        "Use inheritance only when there's a true 'is-a' relationship",
+        "Build small collaborating objects instead of large procedural scripts",
+        "Use domain models, service classes, and value objects appropriately"
+      ]
+    },
+    {
+      "title": "Cryptographic Security",
+      "category": "Security",
+      "description": "Implement cryptographic operations securely with misuse-resistant APIs and rigorous input validation.",
+      "guidelines": [
+        "Use HMAC-based key derivation functions (HKDF) with unique info values",
+        "Never reuse key/IV pairs - generate fresh random IVs for each encryption",
+        "Use memory-hard KDFs like Argon2 instead of fast hash functions",
+        "Implement authenticated encryption modes (AES-GCM) with mandatory tag verification",
+        "Validate cryptographic inputs rigorously - reject ambiguous/null values",
+        "Use per-entry key derivation for database encryption",
+        "Avoid dangerous defaults in cryptographic APIs"
+      ]
+    },
+    {
+      "title": "Static Vulnerability Analysis",
+      "category": "Security",
+      "description": "Use automated static analysis tools like CodeQL and Semgrep for comprehensive vulnerability detection with proper false positive verification.",
+      "guidelines": [
+        "Implement systematic false positive verification before reporting findings",
+        "Use Semgrep rule variant analysis to find similar vulnerabilities",
+        "Scan for insecure defaults, hardcoded credentials, and fail-open patterns",
+        "Integrate supply chain risk assessment into dependency management",
+        "Perform differential code review with git history analysis",
+        "Create custom detection rules for domain-specific vulnerability patterns",
+        "Use property-based testing to discover edge cases"
+      ]
+    },
+    {
+      "title": "Secure API Design",
+      "category": "Security",
+      "description": "Design APIs that make secure usage the path of least resistance through semantic typing and explicit error handling.",
+      "guidelines": [
+        "Design semantic APIs with meaningful types instead of raw bytes/strings",
+        "Make secure configurations the default and require explicit opt-out",
+        "Use type safety to prevent incorrect parameter ordering",
+        "Provide clear, explicit error messages for security failures",
+        "Audit GitHub Actions workflows for AI agent security vulnerabilities",
+        "Implement error-prone API detection for dangerous configurations",
+        "Use context-aware entry point analysis for complex systems"
+      ]
+    },
+    {
+      "title": "Security Development Workflow",
+      "category": "Security",
+      "description": "Integrate security considerations throughout the development lifecycle using automated scanning and systematic review processes.",
+      "guidelines": [
+        "Ask clarifying questions when requirements are underspecified",
+        "Use iterative refinement with automated feedback loops",
+        "Implement supply chain threat landscape auditing",
+        "Use automated scanners for vulnerabilities across platforms",
+        "Create systematic documentation of rationalizations to reject",
+        "Apply architectural review with system context understanding",
+        "Use differential analysis focused on security implications"
+      ]
+    },
+    {
+      "title": "File Size & Complexity Management",
+      "category": "Code Quality",
+      "description": "Maintain readable and maintainable code by enforcing size limits and recognizing refactoring triggers.",
+      "guidelines": [
+        "Keep files under 300 lines, classes under 150 lines, functions under 40 lines",
+        "Refactor when functions exceed ~40 lines",
+        "Refactor when classes handle multiple responsibilities",
+        "Refactor when duplicate logic appears in multiple places",
+        "Refactor when more than 3 nested conditionals are present",
+        "Use extract method, extract class, introduce service object techniques",
+        "Use introduce value object pattern for immutable data structures"
+      ]
+    },
+    {
+      "title": "Function Design Principles",
+      "category": "Code Quality",
+      "description": "Ensure functions are small, predictable, single-purpose, and side-effect aware for better maintainability.",
+      "guidelines": [
+        "Keep functions small, focused, and concise",
+        "Ensure functions have predictable and consistent behavior",
+        "Design functions with single, clear responsibility",
+        "Be mindful of side effects and dependencies",
+        "Avoid functions that try to do everything",
+        "Prefer simple, focused functions like user_service.create_user()",
+        "Avoid complex, multi-purpose functions like do_everything_and_save_user()"
+      ]
+    },
+    {
+      "title": "React Component Design",
+      "category": "Frontend Development",
+      "description": "Build React components that are small, focused, type-safe, and optimized for performance.",
+      "guidelines": [
+        "Keep components small and focused on single responsibility",
+        "Use functional components with hooks instead of class components",
+        "Implement TypeScript for robust type safety",
+        "Avoid prop drilling - use context for shared state",
+        "Use useState for local component state management",
+        "Use useContext for global state that doesn't change often",
+        "Consider Redux/Zustand/Jotai for complex application state"
+      ]
+    },
+    {
+      "title": "React Performance Optimization",
+      "category": "Frontend Development",
+      "description": "Optimize React applications through proper memoization, code splitting, and re-render prevention techniques.",
+      "guidelines": [
+        "Use React.memo() for expensive components to prevent unnecessary re-renders",
+        "Use useMemo() and useCallback() appropriately with proper dependency arrays",
+        "Implement code splitting with React.lazy() for better initial load times",
+        "Avoid unnecessary state lifting that causes excessive re-renders",
+        "Use proper dependency arrays to optimize effect execution",
+        "Consider virtual scrolling for large lists and data sets",
+        "Profile and optimize render performance with React DevTools"
+      ]
+    },
+    {
+      "title": "Error Handling Philosophy",
+      "category": "Code Quality",
+      "description": "Implement clear, structured error handling that communicates issues effectively without silently swallowing problems.",
+      "guidelines": [
+        "Fail loudly and clearly so issues are immediately apparent",
+        "Do not silently swallow exceptions or errors",
+        "Provide specific, useful error messages for debugging",
+        "Use structured exception handling patterns consistently",
+        "Document error conditions and expected recovery paths",
+        "Validate inputs before processing to prevent predictable errors",
+        "Log errors appropriately for monitoring and debugging"
+      ]
+    },
+    {
+      "title": "Readability Priority System",
+      "category": "Code Quality",
+      "description": "Prioritize code readability above all else, followed by simplicity, maintainability, and performance.",
+      "guidelines": [
+        "Prioritize readability as the most important code quality",
+        "Ensure code is simple and straightforward",
+        "Focus on maintainability for long-term projects",
+        "Optimize for performance only when necessary",
+        "Aim for code that new developers can understand quickly",
+        "Use clear variable and function names that reveal intent",
+        "Structure code with logical flow and minimal mental overhead"
+      ]
+    }
+  ]
+}
