@@ -8,4 +8,5 @@ urlpatterns = [
     path('skills/create/', views.create_skills_collection, name='create_skills_collection'),
     path('skills/<int:collection_id>/', views.skills_collection_detail, name='skills_collection_detail'),
     path('skills/<int:collection_id>/download/', views.download_skills_file, name='download_skills_file'),
+    path('api/skill/<int:skill_id>/', views.get_skill_content, name='get_skill_content'),
 ]

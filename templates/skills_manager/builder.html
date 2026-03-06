@@ -1,0 +1,421 @@
+{% extends 'base.html' %}
+
+{% block title %}Skills Builder{% endblock %}
+
+{% block content %}
+<div class="builder-container">
+    <!-- Column 1: Categories Only -->
+    <div class="categories-sidebar">
+        <div class="categories-section">
+            <h3>Categories</h3>
+            <div class="category-list">
+                {% for category in categories %}
+                    <div class="category-item {% if category == selected_category %}active{% endif %}"
+                         onclick="loadCategory('{{ category.slug }}')">
+                        {{ category.name }}
+                        <span class="skill-count">{{ category.skill_components.count }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Column 2: Skills List with Search -->
+    <div class="skills-main">
+        <div class="skills-top-section">
+            {% if selected_category %}
+                <h3>{{ selected_category.name }} Skills</h3>
+                <div class="search-box">
+                    <input type="text" id="skill-search" placeholder="Search skills..." onkeyup="filterSkills()">
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="skills-list" id="skills-list">
+            {% for component in components %}
+                <div class="skill-card" data-title="{{ component.title|lower }}" data-content="{{ component.content|lower }}">
+                    <div class="skill-header">
+                        <h4>{{ component.title }}</h4>
+                        <button class="add-skill-btn" onclick="addToSelected('{{ component.id }}', '{{ component.title }}')">
+                            +
+                        </button>
+                    </div>
+                    <div class="skill-content">
+                        {{ component.content|linebreaks }}
+                    </div>
+                </div>
+            {% empty %}
+                <div class="no-skills">
+                    <p>Select a category to view skills</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Column 3: Selected Skills -->
+    <div class="selected-skills-panel">
+        <div class="selected-panel-inner">
+            <h3>Selected Skills</h3>
+            <div id="selected-skills-list" class="selected-skills-list">
+                <!-- Selected skills will appear here -->
+            </div>
+            <div class="actions">
+                <button onclick="compileSkills()" class="btn compile-btn">Compile Document</button>
+                <button onclick="clearSelection()" class="btn btn-outline">Clear All</button>
+            </div>
+        </div>
+
+        <!-- Compilation Preview -->
+        <div id="compilation-section" class="compilation-section" style="display: none;">
+            <div class="compilation-header">
+                <h3>Compiled Document</h3>
+                <div class="compilation-actions">
+                    <button onclick="copyToClipboard()" class="btn">Copy to Clipboard</button>
+                    <button onclick="downloadMarkdown()" class="btn">Download .md</button>
+                    <button onclick="backToSelection()" class="btn btn-outline">Back</button>
+                </div>
+            </div>
+            <div class="markdown-preview" id="markdown-preview" contenteditable="true">
+                <!-- Markdown content will appear here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let selectedSkills = new Map();
+
+    function loadCategory(categorySlug) {
+        window.location.href = `/categories/${categorySlug}/`;
+    }
+
+    function filterSkills() {
+        const search = document.getElementById('skill-search').value.toLowerCase();
+        const skills = document.querySelectorAll('#skills-list .skill-card');
+
+        skills.forEach(skill => {
+            const title = skill.dataset.title;
+            const content = skill.dataset.content;
+            const matches = title.includes(search) || content.includes(search);
+            skill.style.display = matches ? 'block' : 'none';
+        });
+    }
+
+    function addToSelected(skillId, skillTitle) {
+        if (!selectedSkills.has(skillId)) {
+            selectedSkills.set(skillId, skillTitle);
+            updateSelectedList();
+        }
+    }
+
+    function removeFromSelected(skillId) {
+        selectedSkills.delete(skillId);
+        updateSelectedList();
+    }
+
+    function updateSelectedList() {
+        const list = document.getElementById('selected-skills-list');
+        list.innerHTML = '';
+
+        selectedSkills.forEach((title, id) => {
+            const item = document.createElement('div');
+            item.className = 'selected-skill-item';
+            item.innerHTML = `
+                <span>${title}</span>
+                <button onclick="removeFromSelected('${id}')" class="remove-btn">×</button>
+            `;
+            list.appendChild(item);
+        });
+    }
+
+    async function compileSkills() {
+        if (selectedSkills.size === 0) {
+            alert('Please select at least one skill first');
+            return;
+        }
+
+        // Switch to compilation view
+        document.querySelector('.selected-panel-inner').style.display = 'none';
+        document.getElementById('compilation-section').style.display = 'flex';
+
+        // Generate markdown content
+        const markdownContent = await generateMarkdown();
+        document.getElementById('markdown-preview').innerText = markdownContent;
+    }
+
+    async function generateMarkdown() {
+        let content = '# Skills Collection\n\n';
+        const skillIds = Array.from(selectedSkills.keys());
+
+        for (const skillId of skillIds) {
+            try {
+                const response = await fetch(`/api/skill/${skillId}/`);
+                if (response.ok) {
+                    const skill = await response.json();
+                    content += `## ${skill.title}\n\n`;
+                    content += skill.content + '\n\n';
+                }
+            } catch (error) {
+                console.error('Error fetching skill content:', error);
+                content += `## ${selectedSkills.get(skillId)}\n\n`;
+                content += 'Error loading skill content\n\n';
+            }
+        }
+        return content;
+    }
+
+    function backToSelection() {
+        document.querySelector('.selected-panel-inner').style.display = 'flex';
+        document.getElementById('compilation-section').style.display = 'none';
+    }
+
+    function clearSelection() {
+        selectedSkills.clear();
+        updateSelectedList();
+    }
+
+    function copyToClipboard() {
+        const content = document.getElementById('markdown-preview').innerText;
+        navigator.clipboard.writeText(content).then(() => {
+            alert('Copied to clipboard!');
+        });
+    }
+
+    function downloadMarkdown() {
+        const content = document.getElementById('markdown-preview').innerText;
+        const blob = new Blob([content], { type: 'text/markdown' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'skills.md';
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+</script>
+
+<style>
+    .builder-container {
+        display: flex;
+        height: calc(100vh - 200px);
+        gap: 2rem;
+        margin-top: 1rem;
+    }
+
+    /* Column 1: Categories Sidebar */
+    .categories-sidebar {
+        flex: 0 0 250px;
+        border: 3px solid #000;
+        padding: 1rem;
+        overflow-y: auto;
+    }
+
+    /* Column 2: Skills Main Section */
+    .skills-main {
+        flex: 1;
+        border: 3px solid #000;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Column 3: Selected Skills Panel */
+    .selected-skills-panel {
+        flex: 0 0 350px;
+        border: 3px solid #000;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .categories-section h3 {
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #000;
+        padding-bottom: 0.5rem;
+    }
+
+    .category-list {
+        margin-bottom: 1rem;
+    }
+
+    .category-item {
+        padding: 0.75rem;
+        border: 2px solid #000;
+        margin-bottom: 0.5rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .category-item:hover,
+    .category-item.active {
+        background: #000;
+        color: #fff;
+    }
+
+    .skill-count {
+        font-size: 0.8rem;
+        background: #fff;
+        color: #000;
+        padding: 0.2rem 0.5rem;
+        border-radius: 10px;
+    }
+
+    .category-item.active .skill-count {
+        background: #000;
+        color: #fff;
+        border: 1px solid #fff;
+    }
+
+    /* Skills Top Section */
+    .skills-top-section {
+        margin-bottom: 1rem;
+    }
+
+    .skills-top-section h3 {
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #000;
+        padding-bottom: 0.5rem;
+    }
+
+    .search-box {
+        margin-bottom: 1rem;
+    }
+
+    .search-box input {
+        width: 100%;
+        padding: 0.5rem;
+        border: 2px solid #000;
+    }
+
+    /* Skills List */
+    .skills-list {
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    .skill-card {
+        border: 2px solid #000;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .skill-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .skill-header h4 {
+        margin: 0;
+        flex: 1;
+        font-size: 1.2rem;
+    }
+
+    .add-skill-btn {
+        background: #000;
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+
+    .add-skill-btn:hover {
+        background: #333;
+    }
+
+    .skill-content {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        white-space: pre-wrap;
+        font-family: 'Courier New', monospace;
+    }
+
+    .no-skills {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+    }
+
+    /* Selected Skills Panel */
+    .selected-panel-inner {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .compilation-section {
+        display: none;
+        height: 100%;
+        flex-direction: column;
+    }
+
+    .selected-skills-list {
+        flex: 1;
+        overflow-y: auto;
+        margin-bottom: 1rem;
+    }
+
+    .selected-skill-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem;
+        border: 2px solid #000;
+        margin-bottom: 0.5rem;
+    }
+
+    .remove-btn {
+        background: #f00;
+        color: #fff;
+        border: none;
+        padding: 0.2rem 0.5rem;
+        cursor: pointer;
+    }
+
+    .actions {
+        display: flex;
+        gap: 1rem;
+    }
+
+    /* Compilation Section */
+    .compilation-section {
+        display: none;
+        height: 100%;
+    }
+
+    .compilation-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .compilation-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .markdown-preview {
+        border: 2px solid #000;
+        padding: 1rem;
+        height: calc(100% - 100px);
+        overflow-y: auto;
+        white-space: pre-wrap;
+        font-family: 'Courier New', monospace;
+    }
+
+    .compile-btn {
+        background: #0f0;
+        border-color: #0f0;
+    }
+
+    .compile-btn:hover {
+        background: #fff;
+        color: #0f0;
+    }
+</style>
+{% endblock %}

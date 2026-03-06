@@ -1,18 +1,27 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.utils.text import slugify
 from django.contrib import messages
 from .models import Category, SkillComponent, UserSkillsCollection
 
 
 def home(request):
-    """Home page showing available categories"""
+    """Main builder interface with sidebar layout"""
     categories = Category.objects.filter(skill_components__is_active=True).distinct()
+
+    # Get components for the first category (if available)
+    components = []
+    if categories.exists():
+        first_category = categories.first()
+        components = first_category.skill_components.filter(is_active=True)
+
     context = {
         'categories': categories,
+        'components': components,
+        'selected_category': categories.first() if categories.exists() else None,
     }
-    return render(request, 'skills_manager/home.html', context)
+    return render(request, 'skills_manager/builder.html', context)
 
 
 @login_required
@@ -25,29 +34,18 @@ def dashboard(request):
     return render(request, 'skills_manager/dashboard.html', context)
 
 
-@login_required
 def category_detail(request, category_slug):
     """Show skill components for a specific category"""
     category = get_object_or_404(Category, slug=category_slug)
     components = category.skill_components.filter(is_active=True)
-
-    # Get user's current collection if editing
-    collection_id = request.GET.get('collection_id')
-    selected_components = set()
-    if collection_id:
-        try:
-            collection = UserSkillsCollection.objects.get(id=collection_id, user=request.user)
-            selected_components = set(collection.selected_components.all())
-        except UserSkillsCollection.DoesNotExist:
-            pass
+    categories = Category.objects.filter(skill_components__is_active=True).distinct()
 
     context = {
-        'category': category,
+        'categories': categories,
         'components': components,
-        'selected_components': selected_components,
-        'collection_id': collection_id,
+        'selected_category': category,
     }
-    return render(request, 'skills_manager/category_detail.html', context)
+    return render(request, 'skills_manager/builder.html', context)
 
 
 @login_required
@@ -113,3 +111,13 @@ def download_skills_file(request, collection_id):
     response = HttpResponse(collection.generate_markdown_content(), content_type='text/markdown')
     response['Content-Disposition'] = f'attachment; filename="{slugify(collection.name)}.md"'
     return response
+
+
+def get_skill_content(request, skill_id):
+    """API endpoint to get skill content"""
+    skill = get_object_or_404(SkillComponent, id=skill_id)
+    return JsonResponse({
+        'id': skill.id,
+        'title': skill.title,
+        'content': skill.content
+    })
