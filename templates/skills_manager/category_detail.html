@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %}Skills Builder - {{ category.name }}{% endblock %}
+
+{% block content %}
+    <div class="category-header">
+        <h1>{{ category.name }} Skills</h1>
+        {% if category.description %}
+            <p>{{ category.description }}</p>
+        {% endif %}
+    </div>
+
+    {% if components %}
+        <form method="post" action="{% url 'create_skills_collection' %}" id="components-form">
+            {% csrf_token %}
+            <div class="selection-controls">
+                <button type="button" id="select-all" class="btn btn-outline">Select All</button>
+                <button type="button" id="deselect-all" class="btn btn-outline">Deselect All</button>
+                <span id="selected-count">0 components selected</span>
+            </div>
+
+            <div class="components-list">
+                {% for component in components %}
+                    <div class="component-item">
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox"
+                                       name="components"
+                                       value="{{ component.id }}"
+                                       id="component-{{ component.id }}"
+                                       {% if component in selected_components %}checked{% endif %}>
+                                <label for="component-{{ component.id }}">{{ component.title }}</label>
+                            </div>
+                        </div>
+                        <div class="component-content">{{ component.content }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                <label for="collection-name">Collection Name:</label>
+                <input type="text" name="name" id="collection-name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="collection-description">Description (optional):</label>
+                <textarea name="description" id="collection-description" rows="3"></textarea>
+            </div>
+
+            {% if collection_id %}
+                <input type="hidden" name="collection_id" value="{{ collection_id }}">
+            {% endif %}
+
+            <button type="submit" class="btn">Create Skills Collection</button>
+        </form>
+    {% else %}
+        <div class="card">
+            <p>No skill components available for {{ category.name }} yet.</p>
+        </div>
+    {% endif %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('input[name="components"]');
+            const selectAllBtn = document.getElementById('select-all');
+            const deselectAllBtn = document.getElementById('deselect-all');
+            const selectedCount = document.getElementById('selected-count');
+
+            function updateSelectedCount() {
+                const selected = document.querySelectorAll('input[name="components"]:checked').length;
+                selectedCount.textContent = selected + ' components selected';
+            }
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateSelectedCount);
+            });
+
+            selectAllBtn.addEventListener('click', function() {
+                checkboxes.forEach(checkbox => checkbox.checked = true);
+                updateSelectedCount();
+            });
+
+            deselectAllBtn.addEventListener('click', function() {
+                checkboxes.forEach(checkbox => checkbox.checked = false);
+                updateSelectedCount();
+            });
+
+            // Initial count
+            updateSelectedCount();
+        });
+    </script>
+
+    <style>
+        .category-header {
+            margin-bottom: 2rem;
+        }
+
+        .selection-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border: 2px solid #000;
+        }
+
+        .selection-controls .btn {
+            padding: 0.5rem 1rem;
+        }
+
+        #selected-count {
+            margin-left: auto;
+            font-weight: bold;
+        }
+
+        .component-item {
+            border-bottom: 2px solid #ccc;
+            padding: 1rem 0;
+        }
+
+        .components-list {
+            margin-bottom: 2rem;
+        }
+
+        .component-content {
+            margin-top: 0.5rem;
+        }
+    </style>
+{% endblock %}

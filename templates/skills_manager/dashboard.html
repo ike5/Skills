@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Skills Builder - Dashboard{% endblock %}
+
+{% block content %}
+    <div class="dashboard-header">
+        <h1>Your Skills Collections</h1>
+        <a href="{% url 'create_skills_collection' %}" class="btn">Create New Collection</a>
+    </div>
+
+    {% if collections %}
+        <div class="collections-grid">
+            {% for collection in collections %}
+                <div class="card">
+                    <h3>{{ collection.name }}</h3>
+                    {% if collection.description %}
+                        <p>{{ collection.description }}</p>
+                    {% endif %}
+                    <p><code>{{ collection.selected_components.count }} skill components</code></p>
+                    <p><code>Created: {{ collection.created_at|date:"M d, Y" }}</code></p>
+                    <div class="actions">
+                        <a href="{% url 'skills_collection_detail' collection.id %}" class="btn btn-outline">View/Edit</a>
+                        <a href="{% url 'download_skills_file' collection.id %}" class="btn">Download .md</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="card">
+            <p>You haven't created any skills collections yet.</p>
+            <a href="{% url 'create_skills_collection' %}" class="btn">Create Your First Collection</a>
+        </div>
+    {% endif %}
+
+    <style>
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .collections-grid .card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .collections-grid .card h3 {
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #000;
+            padding-bottom: 0.5rem;
+        }
+
+        .collections-grid .card p {
+            margin-bottom: 0.5rem;
+            flex-grow: 1;
+        }
+
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .actions a {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+        }
+    </style>
+{% endblock %}

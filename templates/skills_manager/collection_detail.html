@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}Skills Builder - {{ collection.name }}{% endblock %}
+
+{% block content %}
+    <div class="collection-header">
+        <h1>{{ collection.name }}</h1>
+        {% if collection.description %}
+            <p>{{ collection.description }}</p>
+        {% endif %}
+    </div>
+
+    <div class="actions">
+        <a href="{% url 'dashboard' %}" class="btn btn-outline">Back to Dashboard</a>
+        <a href="{% url 'download_skills_file' collection.id %}" class="btn">Download .md</a>
+        <button id="copy-btn" class="btn">Copy to Clipboard</button>
+    </div>
+
+    <div class="markdown-preview">
+        <div class="markdown-header">
+            <h3>Preview</h3>
+        </div>
+        <pre><code>{{ markdown_content }}</code></pre>
+    </div>
+
+    <textarea id="markdown-content" style="display: none;">{{ markdown_content }}</textarea>
+
+    <script>
+        document.getElementById('copy-btn').addEventListener('click', function() {
+            const textarea = document.getElementById('markdown-content');
+            textarea.select();
+            document.execCommand('copy');
+
+            // Show success message
+            const btn = this;
+            const originalText = btn.textContent;
+            btn.textContent = 'Copied!';
+            btn.classList.add('success');
+
+            setTimeout(function() {
+                btn.textContent = originalText;
+                btn.classList.remove('success');
+            }, 2000);
+        });
+    </script>
+
+    <style>
+        .collection-header {
+            margin-bottom: 2rem;
+        }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .actions .btn {
+            flex: 1;
+        }
+
+        .markdown-preview {
+            border: 3px solid #000;
+            margin-bottom: 2rem;
+        }
+
+        .markdown-header {
+            background: #000;
+            color: #fff;
+            padding: 1rem;
+            font-weight: bold;
+        }
+
+        .markdown-preview pre {
+            padding: 1rem;
+            margin: 0;
+            background: #f5f5f5;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .markdown-preview code {
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+
+        .btn.success {
+            background: #0f0;
+            color: #000;
+        }
+    </style>
+{% endblock %}

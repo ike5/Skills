@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Skills Builder{% endblock %}</title>
+    <style>
+        /* Brutalist CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            color: #000;
+            border: 8px solid #000;
+            min-height: 100vh;
+            line-height: 1.4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            border-bottom: 4px solid #000;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        nav a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+            color: #000;
+            border: 2px solid #000;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #000;
+            color: #fff;
+            border: 2px solid #000;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .btn-outline {
+            background: #fff;
+            color: #000;
+        }
+
+        .btn-outline:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .card {
+            border: 3px solid #000;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h2 {
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #000;
+            padding-bottom: 0.5rem;
+        }
+
+        .danger {
+            background: #f00;
+            color: #fff;
+        }
+
+        .success {
+            background: #0f0;
+            color: #000;
+        }
+
+        .messages {
+            margin-bottom: 1rem;
+        }
+
+        .message {
+            border: 2px solid #000;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .message.error {
+            background: #f00;
+            color: #fff;
+        }
+
+        .message.success {
+            background: #0f0;
+            color: #000;
+        }
+
+        form {
+            border: 3px solid #000;
+            padding: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #000;
+            background: #fff;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            margin: 1rem 0;
+        }
+
+        .checkbox-item {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin-right: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        .checkbox-item label {
+            flex: 1;
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .component-content {
+            background: #f5f5f5;
+            padding: 1rem;
+            margin-top: 0.5rem;
+            border: 1px solid #ccc;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo">Skills Builder</div>
+                <nav>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'dashboard' %}">Dashboard</a>
+                        <a href="{% url 'account_logout' %}">Logout</a>
+                    {% else %}
+                        <a href="{% url 'account_login' %}">Login</a>
+                        <a href="{% url 'account_signup' %}">Sign Up</a>
+                    {% endif %}
+                </nav>
+            </div>
+        </header>
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>
