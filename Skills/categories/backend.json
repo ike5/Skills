@@ -1,0 +1,102 @@
+{
+  "skills": [
+    {
+      "title": "Database Deadlock Prevention",
+      "category": "Backend Development",
+      "description": "Atomic techniques for preventing database deadlocks and lost updates.",
+      "guidelines": [
+        "Implement consistent access order patterns to prevent circular dependencies",
+        "Design shorter transactions with precise locking scope",
+        "Use database-level atomic operations (like UPDATE counter = counter - 1)",
+        "Monitor queries using sp_WhoIsActive and deadlock graphs",
+        "Implement retry patterns with exponential backoff and jitter",
+        "Use database MVCC capabilities and explicit locking (SELECT FOR UPDATE)",
+        "Set appropriate isolation levels based on consistency requirements"
+      ]
+    },
+    {
+      "title": "Cache Stampede Prevention",
+      "category": "Backend Development",
+      "description": "Strategies for preventing cache stampedes and stale data issues.",
+      "guidelines": [
+        "Use distributed locking with stale data fallback techniques",
+        "Implement probabilistic early recomputation (X-Fetch algorithm)",
+        "Apply request coalescing (single-flight pattern) using atomic Redis operations",
+        "Use tag-based invalidation for complex dependency chains",
+        "Implement version-based cache keys with automated rotation",
+        "Set appropriate time-to-live values based on data volatility",
+        "Monitor cache hit ratios and stampede indicators"
+      ]
+    },
+    {
+      "title": "API Rate Limiting Edge Cases",
+      "category": "Backend Development",
+      "description": "Handling bursty traffic and user-based throttling scenarios.",
+      "guidelines": [
+        "Use sliding window algorithms instead of fixed window to prevent boundary attacks",
+        "Implement distributed coordination using Redis Lua scripts for atomic counters",
+        "Set up tiered rate limiting with different strategies per endpoint",
+        "Design graceful degradation patterns under overload conditions",
+        "Handle NAT gateways and IPv6 blocks with prefix-based limiting",
+        "Implement identity-based rate limiting with proper IP resolution",
+        "Monitor rate limiting metrics and adjust thresholds dynamically"
+      ]
+    },
+    {
+      "title": "Exactly-Once Message Delivery",
+      "category": "Backend Development",
+      "description": "Achieving reliable message delivery guarantees in distributed systems.",
+      "guidelines": [
+        "Implement idempotent producer design with sequence numbers",
+        "Use transactional message processing across multiple resources",
+        "Apply lease patterns for exclusive processing rights",
+        "Create atomic database transactions spanning message consumption",
+        "Implement proper acknowledgement patterns with retry logic",
+        "Monitor message delivery metrics and dead letter queues",
+        "Evaluate trade-offs between complexity and performance"
+      ]
+    },
+    {
+      "title": "Background Job Failure Handling",
+      "category": "Backend Development",
+      "description": "Resilient patterns for background job processing failures.",
+      "guidelines": [
+        "Implement exponential backoff with jitter for retry mechanisms",
+        "Set up dead letter queue implementations with monitoring",
+        "Use circuit breaker patterns to avoid cascading failures",
+        "Design idempotent jobs enabling safe retries",
+        "Implement background token refresh for long-running jobs",
+        "Monitor job execution metrics and failure patterns",
+        "Set up comprehensive alerting for critical job failures"
+      ]
+    },
+    {
+      "title": "JWT Token Refresh Patterns",
+      "category": "Backend Development",
+      "description": "Managing token refresh and session management edge cases.",
+      "guidelines": [
+        "Implement refresh token rotation with concurrent request handling",
+        "Use HTTP-only cookies with proper security flags",
+        "Set up token revocation strategies including blacklisting",
+        "Prevent race conditions for concurrent refresh attempts",
+        "Implement graceful error handling for session warnings",
+        "Monitor token usage patterns and security indicators",
+        "Use short-lived access tokens with longer refresh tokens"
+      ]
+    },
+    {
+      "title": "SQL Injection Prevention",
+      "category": "Backend Development",
+      "description": "Atomic techniques for preventing SQL injection vulnerabilities.",
+      "guidelines": [
+        "Always use parameterized queries instead of concatenation",
+        "Leverage ORM frameworks with proper security configurations",
+        "Implement input validation using allow-list patterns",
+        "Use stored procedures with proper parameter handling",
+        "Regularly audit database queries for injection vulnerabilities",
+        "Implement principle of least privilege for database access",
+        "Monitor for suspicious query patterns and parameter anomalies"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "skills": [
+    {
+      "title": "React Object Reference Stability",
+      "category": "Frontend Development",
+      "description": "Preventing unnecessary re-renders from inline object creation.",
+      "guidelines": [
+        "Memoize object references being passed as props",
+        "Use useCallback for inline function definitions in props",
+        "Avoid creating new objects/arrays inline in render methods",
+        "Extract static object references outside component scope",
+        "Use React.memo() for components receiving object props",
+        "Profile component rendering to identify reference instability",
+        "Implement proper dependency arrays for object dependencies"
+      ]
+    },
+    {
+      "title": "React State Placement Optimization",
+      "category": "Frontend Development",
+      "description": "Colocating state to minimize subtree re-renders.",
+      "guidelines": [
+        "Store state as close to usage as possible to limit re-renders",
+        "Use component composition to avoid prop drilling issues",
+        "Lift state up only when multiple components share dependencies",
+        "Consider Context API for deeply nested state dependencies",
+        "Profile render cycles to identify unnecessary re-renders",
+        "Use React DevTools to identify state-related performance issues",
+        "Implement state splitting for independent component sub-trees"
+      ]
+    },
+    {
+      "title": "useMemo Cost Analysis",
+      "category": "Frontend Development",
+      "description": "Measuring computation cost before applying memoization.",
+      "guidelines": [
+        "Profile component performance before adding memoization",
+        "Only memoize computations costing >1ms CPU time",
+        "Test memoization impact with React DevTools Profiler",
+        "Avoid over-memoizing simple calculations and props",
+        "Monitor re-render counts with and without memoization",
+        "Consider runtime environment (mobile vs desktop performance)",
+        "Balance memoization benefits against memory overhead"
+      ]
+    },
+    {
+      "title": "CSS Z-index Stacking Context",
+      "category": "Frontend Development",
+      "description": "Understanding stacking context creation and containment.",
+      "guidelines": [
+        "Know which CSS properties create stacking contexts",
+        "Apply position: relative/absolute strategically for stacking control",
+        "Recognize that children cannot escape parent stacking contexts",
+        "Use isolation: isolate for deliberate context creation",
+        "Understand how opacity and transforms create stacking contexts",
+        "Use browser DevTools 3D view to debug complex stacking hierarchies",
+        "Implement systematic z-index scales for maintainability"
+      ]
+    },
+    {
+      "title": "JavaScript Closure Cleanup",
+      "category": "Frontend Development",
+      "description": "Proper cleanup of closures to prevent memory leaks.",
+      "guidelines": [
+        "Remove event listeners on component unmount",
+        "Clear intervals and timeouts in cleanup functions",
+        "Unsubscribe from observables and stores in useEffect cleanup",
+        "Avoid retaining large objects in closure scopes",
+        "Use WeakRef/FinalizationRegistry for complex cleanup scenarios",
+        "Monitor heap memory usage to detect closure-related leaks",
+        "Test for memory leaks with browser DevTools Memory panel"
+      ]
+    },
+    {
+      "title": "LocalStorage Quota Management",
+      "category": "Frontend Development",
+      "description": "Strategies for managing localStorage quota limitations.",
+      "guidelines": [
+        "Use navigator.storage.estimate() to check available quota",
+        "Implement graceful fallbacks for QuotaExceededError",
+        "Apply data compression techniques to reduce storage overhead",
+        "Implement LRU cache eviction for bounded storage usage",
+        "Monitor storage usage across tabs with storage event listeners",
+        "Use storage.persist() for critical application data",
+        "Split large datasets across multiple storage mechanisms"
+      ]
+    },
+    {
+      "title": "ARIA Redundancy Prevention",
+      "category": "Frontend Development",
+      "description": "Avoiding redundant ARIA implementations on accessible elements.",
+      "guidelines": [
+        "Avoid aria-label on elements with visible text content",
+        "Never invent custom ARIA attributes - use standardized ones",
+        "Match ARIA roles to the element's native semantics",
+        "Ensure composite widgets have required parent/child role hierarchy",
+        "Use ARIA state properties appropriate for the element's role",
+        "Test ARIA implementations with multiple screen readers",
+        "Follow WAI-ARIA authoring practices for consistent implementation"
+      ]
+    },
+    {
+      "title": "Modal Focus Trapping",
+      "category": "Frontend Development",
+      "description": "Implementing proper focus containment for modal dialogs.",
+      "guidelines": [
+        "Trap focus within modal container using tabindex manipulation",
+        "Preserve browser default focus styles for accessibility",
+        "Return focus to triggering element on modal closure",
+        "Provide keyboard navigation support within modal content",
+        "Handle Escape key to dismiss modal without JS intervention",
+        "Ensure focus remains on first interactive element when opening",
+        "Test focus management with keyboard-only navigation"
+      ]
+    },
+    {
+      "title": "Service Worker Cache Versioning",
+      "category": "Frontend Development",
+      "description": "Managing cache versioning and cleanup in service workers.",
+      "guidelines": [
+        "Implement cache naming patterns with version numbers",
+        "Coordinate service worker updates with application state",
+        "Remove outdated cached resources during activation",
+        "Gracefully handle cache migration between versions",
+        "Implement fallback strategies for failed cache updates",
+        "Monitor cache usage and performance metrics",
+        "Test cache strategies across different network conditions"
+      ]
+    },
+    {
+      "title": "Tree-Shaking Module Structure",
+      "category": "Frontend Development",
+      "description": "Optimizing module structure for effective tree-shaking.",
+      "guidelines": [
+        "Export individual functions instead of barrel files",
+        "Mark modules as side-effect free when appropriate",
+        "Avoid dynamic requires and template literals in imports",
+        "Use direct imports vs full library imports for granular bundling",
+        "Configure package.json sideEffects field properly",
+        "Use bundle analyzers to identify unused code patterns",
+        "Evaluate third-party libraries for tree-shaking compatibility"
+      ]
+    }
+  ]
+}

@@ -210,5 +210,832 @@
         "Structure code with logical flow and minimal mental overhead"
       ]
     }
+,
+    {
+      "title": "Python Clean Code Principles",
+      "category": "Python",
+      "description": "Writing readable, maintainable Python code following PEP 8 and modern Pythonic standards.",
+      "guidelines": [
+        "Follow PEP 8 religiously - Use 4-space indentation, snake_case naming, and 79-character line limits",
+        "Use descriptive variable names that reveal intent rather than abbreviations",
+        "Structure code as reusable modules instead of standalone scripts for scalability",
+        "Adopt modern string formatting - prefer f-strings over % formatting or .format()",
+        "Apply DRY principle - refactor repeated logic into functions and use constants",
+        "Use context managers for automatic resource cleanup with `with` statements",
+        "Validate weak references before usage and handle appropriately"
+      ]
+    },
+    {
+      "title": "Python Performance Optimization",
+      "category": "Python",
+      "description": "Techniques to make Python code faster and more memory-efficient.",
+      "guidelines": [
+        "Optimize data structure selection - use sets for O(1) membership testing, generators for large data",
+        "Prefer built-in functions from math, itertools, bisect modules for C-level performance",
+        "Use `__slots__` for memory-efficient classes by preventing dynamic attribute creation",
+        "Avoid repeated function calls in loops - cache results and use local functions",
+        "Pre-allocate memory for data structures with known sizes to avoid resize overhead",
+        "Leverage Python 3.13+ features like pattern matching and exception groups",
+        "Minimize exception handling in hot loops for better performance"
+      ]
+    },
+    {
+      "title": "Python Testing Strategies",
+      "category": "Python",
+      "description": "Comprehensive approach to writing effective Python tests.",
+      "guidelines": [
+        "Choose pytest framework for its simplicity and powerful features over unittest",
+        "Test expected behavior, not implementation to avoid brittle tests",
+        "Use fixtures for setup/teardown and mock external dependencies",
+        "Implement proper test organization with parallel directory structure",
+        "Focus on integration and unit tests with property-based testing for edge cases",
+        "Set up continuous integration with automated testing and coverage reporting",
+        "Write Google-style docstrings for functions and modules"
+      ]
+    },
+    {
+      "title": "Pythonic Code Patterns",
+      "category": "Python",
+      "description": "Idiomatic Python approaches that make code elegant and efficient.",
+      "guidelines": [
+        "Use list/dict comprehensions instead of explicit loops for readability",
+        "Leverage the standard library - avoid reinventing common functionality",
+        "Prefer explicit over implicit and simple over complex code",
+        "Use pathlib for file operations instead of os.path for cleaner code",
+        "Implement proper exception handling with specific exceptions and logging",
+        "Adopt modern type hints for better IDE support and code clarity",
+        "Use pure functions and avoid unintended side effects"
+      ]
+    },
+    {
+      "title": "Python Common Mistakes to Avoid",
+      "category": "Python",
+      "description": "Pitfalls that often trip up Python developers.",
+      "guidelines": [
+        "Avoid mutable default arguments - use `None` instead of mutable objects",
+        "Don't ignore context managers - ensure proper resource cleanup",
+        "Avoid broad exception catching - be specific about which exceptions to handle",
+        "Don't neglect virtual environments - isolate project dependencies properly",
+        "Avoid premature optimization - profile first, optimize bottlenecks later",
+        "Don't ignore warnings - fix them as they often indicate real issues",
+        "Avoid weak references without proper cleanup handlers"
+      ]
+    },
+    {
+      "title": "SQL Optimization Skills",
+      "category": "Databases",
+      "description": "Master query planning, indexing strategies, and performance optimization techniques.",
+      "guidelines": [
+        "Master EXPLAIN ANALYZE for execution plans and index usage analysis",
+        "Implement strategic indexing with composite, partial, and covering indexes",
+        "Convert IN to EXISTS clauses and use JOINs over subqueries for better performance",
+        "Set up pg_stat_statements, slow query logs, and automated performance alerts",
+        "Implement cursor pagination, batch operations, and materialized views",
+        "Optimize query rewriting for early filtering and reduced data processing",
+        "Use database-specific optimization features like query hints and statistics"
+      ]
+    },
+    {
+      "title": "Database Design Patterns",
+      "category": "Databases",
+      "description": "Fundamental design principles including normalization, constraint patterns, and partitioning strategies.",
+      "guidelines": [
+        "Apply 1NF-3NF normalization correctly, then selectively denormalize for performance",
+        "Use UUID v7 over sequential IDs for distributed systems scalability",
+        "Implement foreign keys, ON DELETE rules, and unique constraint patterns",
+        "Understand when to partition within database vs shard across instances",
+        "Use expand-and-contract patterns for safe schema evolution and migrations",
+        "Establish appropriate primary key design considering distribution requirements",
+        "Balance normalization benefits against performance requirements"
+      ]
+    },
+    {
+      "title": "Database Security Skills",
+      "category": "Databases",
+      "description": "Comprehensive security framework including authentication, encryption, and auditing.",
+      "guidelines": [
+        "Implement multi-factor authentication (MFA) and least privilege access",
+        "Use Transparent Data Encryption (TDE) and TLS 1.3+ for data protection",
+        "Place databases in private subnets and configure proper firewall rules",
+        "Enable comprehensive logging, auditing, and real-time threat detection",
+        "Implement customer-managed keys and Always Encrypted for sensitive data",
+        "Establish proper backup strategies and deletion protection measures",
+        "Address data classification and regulatory compliance requirements"
+      ]
+    },
+    {
+      "title": "ORM Best Practices",
+      "category": "Databases",
+      "description": "Performance-first approach to Object-Relational Mapping with optimization strategies.",
+      "guidelines": [
+        "Prevent N+1 queries using eager loading with JOIN FETCH and projections",
+        "Choose strategic lazy vs eager loading based on specific use case requirements",
+        "Implement AsNoTracking() for read-only queries and efficient pagination",
+        "Enable query logging and integrate with application performance monitoring",
+        "Select ORM tools based on team skills and use case complexity",
+        "Avoid premature optimization, focusing on actual performance bottlenecks",
+        "Establish data access patterns that balance performance and maintainability"
+      ]
+    },
+    {
+      "title": "Migration Strategies",
+      "category": "Databases",
+      "description": "Safe migration patterns including zero-downtime approaches and validation frameworks.",
+      "guidelines": [
+        "Implement zero-downtime migrations using dual writes and change data capture",
+        "Use gradual cutover with feature flags and percentage-based traffic shifting",
+        "Establish automated data quality checks and integrity validation procedures",
+        "Design and test comprehensive rollback procedures before deployment",
+        "Select appropriate migration tools based on platform and data volume",
+        "Monitor migration progress and performance throughout the transition",
+        "Document migration procedures and establish clear success criteria"
+      ]
+    },
+    {
+      "title": "Modern JavaScript ES6+ Best Practices",
+      "category": "JavaScript",
+      "description": "Guidelines for leveraging modern JavaScript features effectively while maintaining code quality and performance.",
+      "guidelines": [
+        "Use destructuring for cleaner object/array handling and function parameter extraction",
+        "Employ template literals for string interpolation and multi-line strings",
+        "Implement arrow functions for concise syntax and lexical `this` binding",
+        "Leverage async/await with proper error handling using try/catch blocks",
+        "Use modules (import/export) for better code organization and tree-shaking",
+        "Apply spread/rest operators for array/object manipulation and function parameters",
+        "Adopt optional chaining (`?.`) and nullish coalescing (`??`) for safer code"
+      ]
+    },
+    {
+      "title": "JavaScript Performance Optimization",
+      "category": "JavaScript",
+      "description": "Strategies to optimize JavaScript execution, loading, and memory usage for better user experience.",
+      "guidelines": [
+        "Implement code splitting with dynamic imports to reduce initial bundle size",
+        "Use Web Workers for CPU-intensive operations to prevent main thread blocking",
+        "Apply debouncing/throttling for expensive event handlers and API calls",
+        "Leverage tree shaking and modern bundlers (Vite, esbuild) for optimal builds",
+        "Utilize browser caching strategies and service workers for repeat visits",
+        "Monitor Core Web Vitals (LCP, INP, CLS) and set performance budgets",
+        "Implement lazy loading for images, components, and non-critical resources"
+      ]
+    },
+    {
+      "title": "JavaScript Error Handling Patterns",
+      "category": "JavaScript",
+      "description": "Comprehensive error management strategies for robust and maintainable applications.",
+      "guidelines": [
+        "Use try/catch blocks consistently with async/await operations",
+        "Implement structured error types with custom error classes for different scenarios",
+        "Log errors appropriately with context information for debugging",
+        "Handle promise rejections using `.catch()` or global unhandled rejection handlers",
+        "Use AbortController for request cancellation and cleanup",
+        "Implement retry patterns with exponential backoff for transient failures",
+        "Separate error handling logic from business logic for better maintainability"
+      ]
+    },
+    {
+      "title": "JavaScript Code Organization",
+      "category": "JavaScript",
+      "description": "Architectural patterns for scalable and maintainable JavaScript applications.",
+      "guidelines": [
+        "Adopt feature-based folder structure over technical-layer organization",
+        "Implement dependency injection patterns for better testability and modularity",
+        "Use ES Modules as the default module system for new projects",
+        "Establish clear separation between data access, business logic, and presentation layers",
+        "Set up configuration management with validation using libraries like Zod",
+        "Create reusable utility functions and shared modules for common operations",
+        "Maintain consistent naming conventions and file organization patterns"
+      ]
+    },
+    {
+      "title": "Modern Async/Await Patterns",
+      "category": "JavaScript",
+      "description": "Advanced patterns for managing asynchronous operations efficiently.",
+      "guidelines": [
+        "Use Promise.all() for parallel execution of independent async operations",
+        "Implement structured concurrency patterns to prevent orphaned async tasks",
+        "Leverage AbortController for cooperative task cancellation and timeouts",
+        "Apply bounded concurrency patterns to limit simultaneous operations",
+        "Use async generators for handling paginated data and streams",
+        "Implement proper error handling strategies for complex async workflows",
+        "Apply debouncing patterns for user interactions like search inputs"
+      ]
+    },
+    {
+      "title": "Modern Browser API Best Practices",
+      "category": "JavaScript",
+      "description": "Guidelines for effective and performance-conscious browser API usage.",
+      "guidelines": [
+        "Always feature-detect APIs before usage and provide graceful fallbacks",
+        "Use Intersection Observer for scroll-based animations and lazy loading",
+        "Leverage Service Workers for offline capabilities and background sync",
+        "Implement proper cleanup for API resources (observers, channels, workers)",
+        "Use IndexedDB for client-side data storage beyond localStorage limits",
+        "Apply Clipboard API for modern copy/paste operations with permission handling",
+        "Utilize Web Workers for heavy computations to prevent main thread blocking"
+      ]
+    },
+    {
+      "title": "Node.js Best Practices",
+      "category": "JavaScript",
+      "description": "Server-side JavaScript guidelines focusing on scalability and security.",
+      "guidelines": [
+        "Use modern ES Modules syntax with .mjs extension or package.json type field",
+        "Implement proper error handling middleware and centralized error logging",
+        "Use environment variables for configuration with validation",
+        "Apply security best practices (input validation, CORS, rate limiting)",
+        "Leverage streams for efficient handling of large files and data processing",
+        "Implement proper process management with clustering for multi-core utilization",
+        "Use TypeScript for better type safety and development experience"
+      ]
+    },
+    {
+      "title": "REST API Design Principles",
+      "category": "API Design",
+      "description": "Core principles and best practices for designing robust RESTful APIs.",
+      "guidelines": [
+        "Use HTTP status codes correctly (200 for success, 400 for client errors, 500 for server errors)",
+        "Implement proper caching headers (ETag, Cache-Control, Last-Modified)",
+        "Design resource-oriented URLs with nouns instead of verbs",
+        "Support content negotiation for multiple response formats",
+        "Implement HATEOAS for discoverable APIs",
+        "Use standard HTTP methods consistently (GET, POST, PUT, PATCH, DELETE)",
+        "Design for backward compatibility with API versioning"
+      ]
+    },
+    {
+      "title": "GraphQL Best Practices",
+      "category": "API Design",
+      "description": "Effective GraphQL schema design and implementation patterns.",
+      "guidelines": [
+        "Use descriptive naming conventions (PascalCase types, camelCase fields)",
+        "Implement connection pattern for pagination instead of raw arrays",
+        "Use input types for mutations and payload types for responses",
+        "Implement DataLoader to prevent N+1 query problems",
+        "Deprecate fields instead of removing them immediately",
+        "Use interfaces and unions for polymorphic data structures",
+        "Set query complexity limits and depth restrictions"
+      ]
+    },
+    {
+      "title": "API Error Handling",
+      "category": "API Design",
+      "description": "Consistent error handling patterns and response formats.",
+      "guidelines": [
+        "Use RFC 9457 Problem Details format for standardized error responses",
+        "Include machine-readable error codes and human-readable messages",
+        "Implement centralized error handling middleware",
+        "Log errors appropriately without exposing sensitive information",
+        "Use appropriate HTTP status codes (400-499 for client errors, 500-599 for server errors)",
+        "Include correlation IDs in error responses for debugging",
+        "Provide helpful documentation links in error responses"
+      ]
+    },
+    {
+      "title": "Modern Unit Testing Strategies",
+      "category": "Testing",
+      "description": "Focus on fast, isolated tests of individual components using modern patterns.",
+      "guidelines": [
+        "Follow the FIRST principle: Fast, Isolated, Repeatable, Self-validating, Timely",
+        "Use AAA pattern: Arrange, Act, Assert for clear test structure",
+        "Test behavior over implementation to avoid brittle tests",
+        "Target >80% coverage for business logic, with meaningful assertions",
+        "Run tests in <50ms each for fast feedback loops",
+        "Write failing tests first before implementation (Red-Green-Refactor cycle)",
+        "Refactor continuously while keeping tests passing"
+      ]
+    },
+    {
+      "title": "Integration Testing Best Practices",
+      "category": "Testing",
+      "description": "Focus on component interactions, APIs, and database communications.",
+      "guidelines": [
+        "Use Testcontainers for realistic environment isolation",
+        "Employ transaction rollback patterns for test isolation",
+        "Validate API schema and authentication flows thoroughly",
+        "Test service boundaries with contract testing tools like Pact",
+        "Focus on happy paths and critical error scenarios",
+        "Implement data-driven testing with various input combinations",
+        "Monitor performance metrics during integration testing"
+      ]
+    },
+    {
+      "title": "Mocking & Test Doubles",
+      "category": "Testing",
+      "description": "Strategic use of test doubles based on testing needs.",
+      "guidelines": [
+        "Use mocks for interaction verification (method call expectations)",
+        "Use stubs for controlling test inputs and responses",
+        "Use fakes for end-to-end workflow testing with simplified logic",
+        "Prefer state testing over behavior testing where possible",
+        "Apply dependency injection patterns for better testability",
+        "Implement mocking with realistic behavior instead of hardcoded values",
+        "Use mock reset patterns to ensure test independence"
+      ]
+    },
+    {
+      "title": "Machine Learning Data Preprocessing",
+      "category": "Machine Learning",
+      "description": "Essential guidelines for preparing data for machine learning models.",
+      "guidelines": [
+        "Validate data distribution matches expectations using statistical tests",
+        "Monitor continuously for data drift and concept drift patterns",
+        "Implement data versioning with tools like DVC or LakeFS for reproducibility",
+        "Handle missing values systematically using imputation strategies",
+        "Remove outliers affecting model performance while preserving valuable anomalies",
+        "Ensure consistent data preprocessing between training and inference",
+        "Track data lineage metadata alongside model versions"
+      ]
+    },
+    {
+      "title": "Machine Learning Model Training",
+      "category": "Machine Learning",
+      "description": "Best practices for training robust machine learning models.",
+      "guidelines": [
+        "Establish baseline models early using simple algorithms for benchmarking",
+        "Track all experiments including hyperparameters, metrics, and configurations",
+        "Use proper stratified train/validation/test splits to prevent bias",
+        "Avoid data leakage by applying preprocessing within cross-validation folds",
+        "Implement early stopping based on validation performance metrics",
+        "Perform hyperparameter optimization with techniques like Bayesian optimization",
+        "Consider class imbalance issues using resampling or weighting techniques"
+      ]
+    },
+    {
+      "title": "MLOps Implementation",
+      "category": "Machine Learning",
+      "description": "End-to-End MLOps workflows for production machine learning.",
+      "guidelines": [
+        "Automate CI/CD pipelines specifically designed for ML workflows",
+        "Implement continuous training pipelines triggered by data changes",
+        "Use feature stores to ensure train/serve feature consistency",
+        "Monitor model performance continuously with automated retraining triggers",
+        "Implement proper testing strategies including unit, integration, and data tests",
+        "Use infrastructure as code for reproducible ML environments",
+        "Establish proper versioning for data, models, and code artifacts"
+      ]
+    },
+    {
+      "title": "Ethical AI Development",
+      "category": "Machine Learning",
+      "description": "Guidelines for developing ethical and accountable AI systems.",
+      "guidelines": [
+        "Implement fairness testing across all demographic groups and edge cases",
+        "Ensure model transparency through comprehensive documentation and interpretability",
+        "Establish clear accountability frameworks with human oversight loops",
+        "Conduct regular bias audits throughout the model development lifecycle",
+        "Implement explicable AI techniques for high-stakes decision systems",
+        "Prioritize privacy protection through proper data handling and anonymization",
+        "Consider environmental impact and sustainability in model development choices"
+      ]
+    },
+    {
+      "title": "iOS Development Best Practices",
+      "category": "Mobile Development",
+      "description": "Modern iOS development guidelines focusing on performance, security, and architecture.",
+      "guidelines": [
+        "Implement proper weak reference patterns to prevent retain cycles",
+        "Profile memory usage regularly using Instruments for early leak detection",
+        "Use Grand Central Dispatch queues efficiently for concurrent operations",
+        "Optimize JSON parsing with Codable and minimize object creation overhead",
+        "Target cold start times under 1.2 seconds on mid-tier devices",
+        "Implement biometric authentication (Face ID/Touch ID) with secure fallback",
+        "Adopt modular architecture with independent feature development"
+      ]
+    },
+    {
+      "title": "React Native Performance",
+      "category": "Mobile Development",
+      "description": "Performance optimization strategies for React Native applications.",
+      "guidelines": [
+        "Use FlashList or Legend List instead of FlatList for better virtualization",
+        "Optimize images with proper sizing, WebP format, and caching",
+        "Enable React Compiler for automatic memoization",
+        "Implement lazy loading and code splitting for bundle optimization",
+        "Use Reanimated library to keep animations on UI thread",
+        "Organize code by feature-based architecture with clear separation",
+        "Enable TypeScript with strict mode for type safety"
+      ]
+    },
+    {
+      "title": "Flutter Development",
+      "category": "Mobile Development",
+      "description": "Best practices for Flutter application development.",
+      "guidelines": [
+        "Use `const` constructors extensively to minimize widget rebuilds",
+        "Implement lazy loading with ListView.builder/GridView.builder",
+        "Offload heavy operations using `compute()` function",
+        "Optimize images with cacheWidth/cacheHeight parameters",
+        "Profile performance regularly using Flutter DevTools",
+        "Organize code by features instead of by technical concerns",
+        "Implement centralized ThemeData for consistent theming throughout app"
+      ]
+    },
+    {
+      "title": "Cloud Cost Optimization",
+      "category": "Cloud Computing",
+      "description": "Strategies for optimizing cloud infrastructure costs and resource usage.",
+      "guidelines": [
+        "Implement utilization monitoring with automated right-sizing recommendations",
+        "Use spot instances and preemptible VMs for non-critical workloads",
+        "Schedule workflow execution during off-peak pricing periods",
+        "Implement automated scaling based on actual usage patterns",
+        "Use cloud cost optimization tools with anomaly detection",
+        "Establish budget alerts and spending thresholds",
+        "Optimize data transfer costs through regional placement and CDN usage"
+      ]
+    },
+    {
+      "title": "Cloud Security Best Practices",
+      "category": "Cloud Computing",
+      "description": "Comprehensive security framework for cloud infrastructure.",
+      "guidelines": [
+        "Implement zero-trust networking principles with micro-segmentation",
+        "Use infrastructure as code with security scanning tools",
+        "Enable comprehensive logging and monitoring across all cloud services",
+        "Implement least privilege access using identity federation",
+        "Use encryption at rest and in transit for all sensitive data",
+        "Establish incident response procedures with automated detection",
+        "Conduct regular security assessments and penetration testing"
+      ]
+    },
+    {
+      "title": "AI-Enhanced Scrum Practices",
+      "category": "Agile Development",
+      "description": "Evolving Scrum methodologies with AI integration while maintaining core agile principles.",
+      "guidelines": [
+        "Implement AI-assisted sprint planning with predictive forecasting",
+        "Strengthen Definition of Done to include rigorous validation of AI-generated outputs",
+        "Evolve Product Developer role from code generation to quality curation",
+        "Establish new working agreements for AI boundaries while preserving safety",
+        "Integrate automated quality gates with pre-defined review cycles",
+        "Enhance retrospective implementation by converting insights into actionable work items",
+        "Maintain empirical pillars when working with AI systems"
+      ]
+    },
+    {
+      "title": "Advanced Kanban Workflow",
+      "category": "Agile Development",
+      "description": "Mastering flow-based development with modern tools and distributed team support.",
+      "guidelines": [
+        "Implement visual workflow systems with advanced visualization beyond basic boards",
+        "Set strategic WIP limits across workflow stages to manage flow dynamics",
+        "Establish explicit process policies with clear Ready and Done criteria",
+        "Create multi-level feedback loops for continuous improvement",
+        "Adopt async-first communication protocols with core time zone overlap windows",
+        "Use data-driven decision making with flow metrics",
+        "Implement collaborative improvement through structured experimentation"
+      ]
+    },
+    {
+      "title": "Modern Code Review Techniques",
+      "category": "Agile Development",
+      "description": "Automated, efficient code review processes with AI enhancement.",
+      "guidelines": [
+        "Implement shift-left reviews integrated early in development cycle",
+        "Adopt automation-driven processes with AI-assisted quality gates",
+        "Use Pull Request 2.0 approach with smaller, more frequent reviews (<400 lines)",
+        "Implement checklist-driven reviews covering functionality, security, maintainability",
+        "Establish metrics-driven approach (review cycle time <24hrs)",
+        "Adopt async-first reviews with detailed written feedback over meetings",
+        "Use expertise-based routing with AI suggesting appropriate reviewers"
+      ]
+    },
+    {
+      "title": "Kubernetes Pod CrashLoopBackOff Debugging",
+      "category": "Infrastructure",
+      "description": "Debugging techniques for Kubernetes pods stuck in CrashLoopBackOff state.",
+      "guidelines": [
+        "Check previous logs: kubectl logs <pod> --previous for error context",
+        "Examine pod events: kubectl describe pod <pod> for scheduling issues",
+        "Use ephemeral containers for debugging: kubectl debug <pod> -it",
+        "Test resource limits locally before deployment to ensure compatibility",
+        "Implement proper health check separation (liveness vs readiness probes)",
+        "Monitor restart count and memory usage proactively in production",
+        "Verify container image tags and runtime dependencies"
+      ]
+    },
+    {
+      "title": "Istio Circuit Breaker Configuration",
+      "category": "Infrastructure",
+      "description": "Patterns for configuring circuit breakers in service mesh environments.",
+      "guidelines": [
+        "Set connection pool limits per service destination to prevent overload",
+        "Configure outlier detection with failure thresholds based on service SLAs",
+        "Implement retry policies with exponential backoff to prevent cascading failures",
+        "Use priority-based routing during failures to maintain critical traffic",
+        "Configure request timeout hierarchies to respect upstream service constraints",
+        "Monitor circuit breaker state changes for proactive incident response",
+        "Test circuit breaker behavior with controlled failure injection"
+      ]
+    },
+    {
+      "title": "Network Partitioning Recovery",
+      "category": "Infrastructure",
+      "description": "Strategies for handling network partitions in distributed systems.",
+      "guidelines": [
+        "Implement quorum-based decision making to maintain data consistency",
+        "Use client-side service discovery for partition tolerance during DNS failures",
+        "Configure adaptive retry policies with jitter to distribute retry load",
+        "Monitor partition indicators across availability zones and regions",
+        "Implement partition-aware load balancing algorithms that detect outages",
+        "Test partition scenarios with chaos engineering to validate recovery procedures",
+        "Maintain fallback mechanisms for critical operations during partitions"
+      ]
+    },
+    {
+      "title": "Autoscaling Threshold Optimization",
+      "category": "Infrastructure",
+      "description": "Best practices for configuring effective autoscaling thresholds.",
+      "guidelines": [
+        "Set scale-out thresholds at 60-75% CPU utilization for responsive scaling",
+        "Configure scale-in thresholds at 25-40% CPU utilization for resource efficiency",
+        "Use asymmetric cooldown periods (faster scale-out, slower scale-in)",
+        "Implement warm pools for applications with long initialization times",
+        "Monitor provisioning time and success rates to refine scaling policies",
+        "Use predictive scaling for consistent workload patterns based on historical data",
+        "Configure health checks to ensure scaled nodes are ready before traffic routing"
+      ]
+    },
+    {
+      "title": "Metric Cardinality Management",
+      "category": "Infrastructure",
+      "description": "Strategies for managing high-cardinality metrics in monitoring systems.",
+      "guidelines": [
+        "Replace dynamic URL segments with placeholders (/users/{id}) in metrics",
+        "Group status codes into classes (2xx, 4xx, 5xx) to reduce cardinality",
+        "Implement cardinality limits at SDK level to catch issues early",
+        "Monitor time series count per metric to identify cardinality hotspots",
+        "Use aggregation to reduce dimensionality while preserving signal value",
+        "Set up cardinality budgets per team/service to enforce discipline",
+        "Regularly review and optimize high-cardinality metric patterns"
+      ]
+    },
+    {
+      "title": "Terraform Race Condition Prevention",
+      "category": "Infrastructure",
+      "description": "Techniques for preventing race conditions in Terraform deployments.",
+      "guidelines": [
+        "Implement remote state storage with proper locking mechanisms",
+        "Use S3 backends with DynamoDB locking for distributed coordination",
+        "Structure deployments as atomic units to minimize concurrent changes",
+        "Implement approval gates in CI/CD pipelines for critical infrastructure",
+        "Regularly backup state files and practice recovery procedures",
+        "Separate infrastructure by lifecycle and ownership to reduce conflicts",
+        "Use workspace isolation for development vs production environments"
+      ]
+    },
+    {
+      "title": "DNS Load Balancing Troubleshooting",
+      "category": "Infrastructure",
+      "description": "Debugging techniques for DNS-based load balancing failures.",
+      "guidelines": [
+        "Check service endpoints: kubectl get endpoints for connectivity verification",
+        "Verify DNS resolution from pods: nslookup for name resolution issues",
+        "Monitor DNS cache expiration times and TTL configurations",
+        "Implement health-aware client-side load balancing as failover",
+        "Use service mesh for real-time service discovery and health status",
+        "Test cross-namespace access permissions and network policies",
+        "Monitor DNS query latency and failure rates for performance issues"
+      ]
+    },
+    {
+      "title": "Database Deadlock Prevention",
+      "category": "Backend Development",
+      "description": "Atomic techniques for preventing database deadlocks and lost updates.",
+      "guidelines": [
+        "Implement consistent access order patterns to prevent circular dependencies",
+        "Design shorter transactions with precise locking scope",
+        "Use database-level atomic operations (like UPDATE counter = counter - 1)",
+        "Monitor queries using sp_WhoIsActive and deadlock graphs",
+        "Implement retry patterns with exponential backoff and jitter",
+        "Use database MVCC capabilities and explicit locking (SELECT FOR UPDATE)",
+        "Set appropriate isolation levels based on consistency requirements"
+      ]
+    },
+    {
+      "title": "Cache Stampede Prevention",
+      "category": "Backend Development",
+      "description": "Strategies for preventing cache stampedes and stale data issues.",
+      "guidelines": [
+        "Use distributed locking with stale data fallback techniques",
+        "Implement probabilistic early recomputation (X-Fetch algorithm)",
+        "Apply request coalescing (single-flight pattern) using atomic Redis operations",
+        "Use tag-based invalidation for complex dependency chains",
+        "Implement version-based cache keys with automated rotation",
+        "Set appropriate time-to-live values based on data volatility",
+        "Monitor cache hit ratios and stampede indicators"
+      ]
+    },
+    {
+      "title": "API Rate Limiting Edge Cases",
+      "category": "Backend Development",
+      "description": "Handling bursty traffic and user-based throttling scenarios.",
+      "guidelines": [
+        "Use sliding window algorithms instead of fixed window to prevent boundary attacks",
+        "Implement distributed coordination using Redis Lua scripts for atomic counters",
+        "Set up tiered rate limiting with different strategies per endpoint",
+        "Design graceful degradation patterns under overload conditions",
+        "Handle NAT gateways and IPv6 blocks with prefix-based limiting",
+        "Implement identity-based rate limiting with proper IP resolution",
+        "Monitor rate limiting metrics and adjust thresholds dynamically"
+      ]
+    },
+    {
+      "title": "Exactly-Once Message Delivery",
+      "category": "Backend Development",
+      "description": "Achieving reliable message delivery guarantees in distributed systems.",
+      "guidelines": [
+        "Implement idempotent producer design with sequence numbers",
+        "Use transactional message processing across multiple resources",
+        "Apply lease patterns for exclusive processing rights",
+        "Create atomic database transactions spanning message consumption",
+        "Implement proper acknowledgement patterns with retry logic",
+        "Monitor message delivery metrics and dead letter queues",
+        "Evaluate trade-offs between complexity and performance"
+      ]
+    },
+    {
+      "title": "Background Job Failure Handling",
+      "category": "Backend Development",
+      "description": "Resilient patterns for background job processing failures.",
+      "guidelines": [
+        "Implement exponential backoff with jitter for retry mechanisms",
+        "Set up dead letter queue implementations with monitoring",
+        "Use circuit breaker patterns to avoid cascading failures",
+        "Design idempotent jobs enabling safe retries",
+        "Implement background token refresh for long-running jobs",
+        "Monitor job execution metrics and failure patterns",
+        "Set up comprehensive alerting for critical job failures"
+      ]
+    },
+    {
+      "title": "JWT Token Refresh Patterns",
+      "category": "Backend Development",
+      "description": "Managing token refresh and session management edge cases.",
+      "guidelines": [
+        "Implement refresh token rotation with concurrent request handling",
+        "Use HTTP-only cookies with proper security flags",
+        "Set up token revocation strategies including blacklisting",
+        "Prevent race conditions for concurrent refresh attempts",
+        "Implement graceful error handling for session warnings",
+        "Monitor token usage patterns and security indicators",
+        "Use short-lived access tokens with longer refresh tokens"
+      ]
+    },
+    {
+      "title": "SQL Injection Prevention",
+      "category": "Backend Development",
+      "description": "Atomic techniques for preventing SQL injection vulnerabilities.",
+      "guidelines": [
+        "Always use parameterized queries instead of concatenation",
+        "Leverage ORM frameworks with proper security configurations",
+        "Implement input validation using allow-list patterns",
+        "Use stored procedures with proper parameter handling",
+        "Regularly audit database queries for injection vulnerabilities",
+        "Implement principle of least privilege for database access",
+        "Monitor for suspicious query patterns and parameter anomalies"
+      ]
+    },
+    {
+      "title": "React Object Reference Stability",
+      "category": "Frontend Development",
+      "description": "Preventing unnecessary re-renders from inline object creation.",
+      "guidelines": [
+        "Memoize object references being passed as props",
+        "Use useCallback for inline function definitions in props",
+        "Avoid creating new objects/arrays inline in render methods",
+        "Extract static object references outside component scope",
+        "Use React.memo() for components receiving object props",
+        "Profile component rendering to identify reference instability",
+        "Implement proper dependency arrays for object dependencies"
+      ]
+    },
+    {
+      "title": "React State Placement Optimization",
+      "category": "Frontend Development",
+      "description": "Colocating state to minimize subtree re-renders.",
+      "guidelines": [
+        "Store state as close to usage as possible to limit re-renders",
+        "Use component composition to avoid prop drilling issues",
+        "Lift state up only when multiple components share dependencies",
+        "Consider Context API for deeply nested state dependencies",
+        "Profile render cycles to identify unnecessary re-renders",
+        "Use React DevTools to identify state-related performance issues",
+        "Implement state splitting for independent component sub-trees"
+      ]
+    },
+    {
+      "title": "useMemo Cost Analysis",
+      "category": "Frontend Development",
+      "description": "Measuring computation cost before applying memoization.",
+      "guidelines": [
+        "Profile component performance before adding memoization",
+        "Only memoize computations costing >1ms CPU time",
+        "Test memoization impact with React DevTools Profiler",
+        "Avoid over-memoizing simple calculations and props",
+        "Monitor re-render counts with and without memoization",
+        "Consider runtime environment (mobile vs desktop performance)",
+        "Balance memoization benefits against memory overhead"
+      ]
+    },
+    {
+      "title": "CSS Z-index Stacking Context",
+      "category": "Frontend Development",
+      "description": "Understanding stacking context creation and containment.",
+      "guidelines": [
+        "Know which CSS properties create stacking contexts",
+        "Apply position: relative/absolute strategically for stacking control",
+        "Recognize that children cannot escape parent stacking contexts",
+        "Use isolation: isolate for deliberate context creation",
+        "Understand how opacity and transforms create stacking contexts",
+        "Use browser DevTools 3D view to debug complex stacking hierarchies",
+        "Implement systematic z-index scales for maintainability"
+      ]
+    },
+    {
+      "title": "JavaScript Closure Cleanup",
+      "category": "Frontend Development",
+      "description": "Proper cleanup of closures to prevent memory leaks.",
+      "guidelines": [
+        "Remove event listeners on component unmount",
+        "Clear intervals and timeouts in cleanup functions",
+        "Unsubscribe from observables and stores in useEffect cleanup",
+        "Avoid retaining large objects in closure scopes",
+        "Use WeakRef/FinalizationRegistry for complex cleanup scenarios",
+        "Monitor heap memory usage to detect closure-related leaks",
+        "Test for memory leaks with browser DevTools Memory panel"
+      ]
+    },
+    {
+      "title": "LocalStorage Quota Management",
+      "category": "Frontend Development",
+      "description": "Strategies for managing localStorage quota limitations.",
+      "guidelines": [
+        "Use navigator.storage.estimate() to check available quota",
+        "Implement graceful fallbacks for QuotaExceededError",
+        "Apply data compression techniques to reduce storage overhead",
+        "Implement LRU cache eviction for bounded storage usage",
+        "Monitor storage usage across tabs with storage event listeners",
+        "Use storage.persist() for critical application data",
+        "Split large datasets across multiple storage mechanisms"
+      ]
+    },
+    {
+      "title": "ARIA Redundancy Prevention",
+      "category": "Frontend Development",
+      "description": "Avoiding redundant ARIA implementations on accessible elements.",
+      "guidelines": [
+        "Avoid aria-label on elements with visible text content",
+        "Never invent custom ARIA attributes - use standardized ones",
+        "Match ARIA roles to the element's native semantics",
+        "Ensure composite widgets have required parent/child role hierarchy",
+        "Use ARIA state properties appropriate for the element's role",
+        "Test ARIA implementations with multiple screen readers",
+        "Follow WAI-ARIA authoring practices for consistent implementation"
+      ]
+    },
+    {
+      "title": "Modal Focus Trapping",
+      "category": "Frontend Development",
+      "description": "Implementing proper focus containment for modal dialogs.",
+      "guidelines": [
+        "Trap focus within modal container using tabindex manipulation",
+        "Preserve browser default focus styles for accessibility",
+        "Return focus to triggering element on modal closure",
+        "Provide keyboard navigation support within modal content",
+        "Handle Escape key to dismiss modal without JS intervention",
+        "Ensure focus remains on first interactive element when opening",
+        "Test focus management with keyboard-only navigation"
+      ]
+    },
+    {
+      "title": "Service Worker Cache Versioning",
+      "category": "Frontend Development",
+      "description": "Managing cache versioning and cleanup in service workers.",
+      "guidelines": [
+        "Implement cache naming patterns with version numbers",
+        "Coordinate service worker updates with application state",
+        "Remove outdated cached resources during activation",
+        "Gracefully handle cache migration between versions",
+        "Implement fallback strategies for failed cache updates",
+        "Monitor cache usage and performance metrics",
+        "Test cache strategies across different network conditions"
+      ]
+    },
+    {
+      "title": "Tree-Shaking Module Structure",
+      "category": "Frontend Development",
+      "description": "Optimizing module structure for effective tree-shaking.",
+      "guidelines": [
+        "Export individual functions instead of barrel files",
+        "Mark modules as side-effect free when appropriate",
+        "Avoid dynamic requires and template literals in imports",
+        "Use direct imports vs full library imports for granular bundling",
+        "Configure package.json sideEffects field properly",
+        "Use bundle analyzers to identify unused code patterns",
+        "Evaluate third-party libraries for tree-shaking compatibility"
+      ]
+    }
   ]
 }

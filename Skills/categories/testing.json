@@ -1,0 +1,102 @@
+{
+  "skills": [
+    {
+      "title": "Async Timer Management",
+      "category": "Testing",
+      "description": "Using advanceTimersByTimeAsync for proper microtask flushing in tests.",
+      "guidelines": [
+        "Use advanceTimersByTimeAsync instead of synchronous timer advancement",
+        "Always await timer operations before making assertions",
+        "Flush microtasks properly to avoid timing dependencies",
+        "Configure Jest/Vitest timer mocks for specific test scenarios",
+        "Check timer callback execution order for proper test sequencing",
+        "Monitor setTimeout/setInterval behavior across test frameworks",
+        "Implement proper cleanup for timer-based tests"
+      ]
+    },
+    {
+      "title": "Database Transaction Isolation",
+      "category": "Testing",
+      "description": "Wrapping tests in transactions with automatic rollback for isolated testing.",
+      "guidelines": [
+        "Wrap each test in database transactions for isolation",
+        "Configure automatic transaction rollback after test completion",
+        "Use Testcontainers for real database testing vs SQLite/in-memory",
+        "Implement proper beforeEach/afterEach transaction handling",
+        "Test database isolation for concurrent test execution",
+        "Verify transaction rollback effectiveness for data cleanup",
+        "Monitor database connection usage in test environments"
+      ]
+    },
+    {
+      "title": "Strategic Boundary Mocking",
+      "category": "Testing",
+      "description": "Mocking only external APIs/databases to avoid overmocking.",
+      "guidelines": [
+        "Mock only external services and infrastructure dependencies",
+        "Test internal collaborators through public interfaces",
+        "Avoid mocking every component interaction",
+        "Use real implementations for internal business logic",
+        "Focus on external boundary testing for integration tests",
+        "Implement sociable unit testing strategies",
+        "Balance mocking vs integration testing appropriately"
+      ]
+    },
+    {
+      "title": "Percentile-Based Assessment",
+      "category": "Testing",
+      "description": "Using p95/p99 metrics instead of averages for performance testing.",
+      "guidelines": [
+        "Measure p95/p99 response times instead of average metrics",
+        "Focus on worst-case performance scenarios",
+        "Analyze throughput and error rates together",
+        "Test with production-like data patterns and volumes",
+        "Implement percentile-based SLO definitions",
+        "Monitor performance outliers systematically",
+        "Correlate performance metrics with error rates"
+      ]
+    },
+    {
+      "title": "Property-Based Fuzzing",
+      "category": "Testing",
+      "description": "Using frameworks like Hypothesis/fast-check for state machine testing.",
+      "guidelines": [
+        "Use property-based testing frameworks for boundary discovery",
+        "Implement state machine testing for complex workflows",
+        "Generate edge cases automatically using fuzzing techniques",
+        "Test invariants and properties rather than specific examples",
+        "Implement shrinking to find minimal reproduction cases",
+        "Integrate fuzz testing into CI/CD pipelines",
+        "Monitor discovered edge cases for regression testing"
+      ]
+    },
+    {
+      "title": "Dynamic Resource Allocation",
+      "category": "Testing",
+      "description": "Using cloud containers that scale based on test queue length.",
+      "guidelines": [
+        "Scale test infrastructure based on queue size",
+        "Use cloud containers for flexible resource allocation",
+        "Implement worker isolation per parallel test execution",
+        "Configure automatic scaling based on test duration",
+        "Monitor resource usage across test suites",
+        "Optimize parallel test execution strategies",
+        "Implement cost-effective resource allocation patterns"
+      ]
+    },
+    {
+      "title": "Container Version Pinning",
+      "category": "Testing",
+      "description": "Using specific Docker tags instead of \"latest\" for test consistency.",
+      "guidelines": [
+        "Pin Docker images to specific version tags",
+        "Avoid using \"latest\" tags in test environments",
+        "Maintain version consistency across dev/test/prod",
+        "Automate container version updates with testing",
+        "Monitor for vulnerable or outdated container versions",
+        "Implement container tagging strategies for release management",
+        "Test with identical infrastructure across environments"
+      ]
+    }
+  ]
+}

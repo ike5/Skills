@@ -1,0 +1,102 @@
+{
+  "skills": [
+    {
+      "title": "Kubernetes Pod CrashLoopBackOff Debugging",
+      "category": "Infrastructure",
+      "description": "Debugging techniques for Kubernetes pods stuck in CrashLoopBackOff state.",
+      "guidelines": [
+        "Check previous logs: kubectl logs <pod> --previous for error context",
+        "Examine pod events: kubectl describe pod <pod> for scheduling issues",
+        "Use ephemeral containers for debugging: kubectl debug <pod> -it",
+        "Test resource limits locally before deployment to ensure compatibility",
+        "Implement proper health check separation (liveness vs readiness probes)",
+        "Monitor restart count and memory usage proactively in production",
+        "Verify container image tags and runtime dependencies"
+      ]
+    },
+    {
+      "title": "Istio Circuit Breaker Configuration",
+      "category": "Infrastructure",
+      "description": "Patterns for configuring circuit breakers in service mesh environments.",
+      "guidelines": [
+        "Set connection pool limits per service destination to prevent overload",
+        "Configure outlier detection with failure thresholds based on service SLAs",
+        "Implement retry policies with exponential backoff to prevent cascading failures",
+        "Use priority-based routing during failures to maintain critical traffic",
+        "Configure request timeout hierarchies to respect upstream service constraints",
+        "Monitor circuit breaker state changes for proactive incident response",
+        "Test circuit breaker behavior with controlled failure injection"
+      ]
+    },
+    {
+      "title": "Network Partitioning Recovery",
+      "category": "Infrastructure",
+      "description": "Strategies for handling network partitions in distributed systems.",
+      "guidelines": [
+        "Implement quorum-based decision making to maintain data consistency",
+        "Use client-side service discovery for partition tolerance during DNS failures",
+        "Configure adaptive retry policies with jitter to distribute retry load",
+        "Monitor partition indicators across availability zones and regions",
+        "Implement partition-aware load balancing algorithms that detect outages",
+        "Test partition scenarios with chaos engineering to validate recovery procedures",
+        "Maintain fallback mechanisms for critical operations during partitions"
+      ]
+    },
+    {
+      "title": "Autoscaling Threshold Optimization",
+      "category": "Infrastructure",
+      "description": "Best practices for configuring effective autoscaling thresholds.",
+      "guidelines": [
+        "Set scale-out thresholds at 60-75% CPU utilization for responsive scaling",
+        "Configure scale-in thresholds at 25-40% CPU utilization for resource efficiency",
+        "Use asymmetric cooldown periods (faster scale-out, slower scale-in)",
+        "Implement warm pools for applications with long initialization times",
+        "Monitor provisioning time and success rates to refine scaling policies",
+        "Use predictive scaling for consistent workload patterns based on historical data",
+        "Configure health checks to ensure scaled nodes are ready before traffic routing"
+      ]
+    },
+    {
+      "title": "Metric Cardinality Management",
+      "category": "Infrastructure",
+      "description": "Strategies for managing high-cardinality metrics in monitoring systems.",
+      "guidelines": [
+        "Replace dynamic URL segments with placeholders (/users/{id}) in metrics",
+        "Group status codes into classes (2xx, 4xx, 5xx) to reduce cardinality",
+        "Implement cardinality limits at SDK level to catch issues early",
+        "Monitor time series count per metric to identify cardinality hotspots",
+        "Use aggregation to reduce dimensionality while preserving signal value",
+        "Set up cardinality budgets per team/service to enforce discipline",
+        "Regularly review and optimize high-cardinality metric patterns"
+      ]
+    },
+    {
+      "title": "Terraform Race Condition Prevention",
+      "category": "Infrastructure",
+      "description": "Techniques for preventing race conditions in Terraform deployments.",
+      "guidelines": [
+        "Implement remote state storage with proper locking mechanisms",
+        "Use S3 backends with DynamoDB locking for distributed coordination",
+        "Structure deployments as atomic units to minimize concurrent changes",
+        "Implement approval gates in CI/CD pipelines for critical infrastructure",
+        "Regularly backup state files and practice recovery procedures",
+        "Separate infrastructure by lifecycle and ownership to reduce conflicts",
+        "Use workspace isolation for development vs production environments"
+      ]
+    },
+    {
+      "title": "DNS Load Balancing Troubleshooting",
+      "category": "Infrastructure",
+      "description": "Debugging techniques for DNS-based load balancing failures.",
+      "guidelines": [
+        "Check service endpoints: kubectl get endpoints for connectivity verification",
+        "Verify DNS resolution from pods: nslookup for name resolution issues",
+        "Monitor DNS cache expiration times and TTL configurations",
+        "Implement health-aware client-side load balancing as failover",
+        "Use service mesh for real-time service discovery and health status",
+        "Test cross-namespace access permissions and network policies",
+        "Monitor DNS query latency and failure rates for performance issues"
+      ]
+    }
+  ]
+}

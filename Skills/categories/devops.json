@@ -1,0 +1,116 @@
+{
+  "skills": [
+    {
+      "title": "Flaky Build Detection",
+      "category": "DevOps",
+      "description": "Automatic retry mechanisms with exponential backoff.",
+      "guidelines": [
+        "Implement automatic retry with exponential backoff logic",
+        "Quarantine consistently failing tests from build pipeline",
+        "Parallelize test execution with intelligent job splitting",
+        "Use Jest-circus retry strategies for JavaScript testing",
+        "Monitor flaky test patterns and prioritize fixes",
+        "Implement build health scoring based on flakiness indicators",
+        "Track flaky test frequency and impact on team productivity"
+      ]
+    },
+    {
+      "title": "Blue-Green Deployment",
+      "category": "DevOps",
+      "description": "Patterns with instant traffic switching for deployment rollback.",
+      "guidelines": [
+        "Implement blue-green deployment for zero-downtime releases",
+        "Use canary deployments with progressive rollout strategies",
+        "Configure health-check based rollback triggers",
+        "Automate traffic switching between deployment environments",
+        "Monitor deployment metrics for automated rollback decisions",
+        "Test deployments thoroughly before full traffic redirection",
+        "Implement GitOps verification gates for safe deployments"
+      ]
+    },
+    {
+      "title": "Rootless Container Security",
+      "category": "DevOps",
+      "description": "Configurations for privilege escalation prevention.",
+      "guidelines": [
+        "Configure rootless container execution environments",
+        "Restrict Linux capabilities to minimum required",
+        "Implement user namespace isolation in container runtime",
+        "Enforce seccomp profiles to limit system calls",
+        "Monitor container privilege escalation attempts",
+        "Use distroless base images for minimal attack surface",
+        "Implement automated security scanning for container images"
+      ]
+    },
+    {
+      "title": "Dynamic Drift Detection",
+      "category": "DevOps",
+      "description": "Real-time detection without Terraform plan overhead.",
+      "guidelines": [
+        "Implement AI-powered drift detection for resource monitoring",
+        "Perform field-level comparison across resource attributes",
+        "Automate compliance checking with severity-based routing",
+        "Configure automatic remediation for low-risk resource drifts",
+        "Integrate CloudFormation native drift detection mechanisms",
+        "Monitor cross-region StackSets for consistency",
+        "Set up continuous monitoring with automated fix workflows"
+      ]
+    },
+    {
+      "title": "Dynamic Secret Generation",
+      "category": "DevOps",
+      "description": "Secret generation with automatic revocation.",
+      "guidelines": [
+        "Generate dynamic secrets with configurable TTL policies",
+        "Automate secret rotation using vault integration",
+        "Implement in-memory ephemeral secret delivery",
+        "Configure role-based fine-grained access control",
+        "Eliminate hardcoded credentials from repositories",
+        "Replace environment variable secrets with vault integration",
+        "Implement automated revocation workflows"
+      ]
+    },
+    {
+      "title": "Machine Learning Alert Thresholds",
+      "category": "DevOps",
+      "description": "Dynamic thresholding based on historical patterns.",
+      "guidelines": [
+        "Use ML-based thresholding for dynamic alert tuning",
+        "Apply pattern recognition for false positive reduction",
+        "Implement predictive analysis for issue forecasting",
+        "Grade alerts by severity and actionability",
+        "Focus monitoring on SLO-based symptom decay",
+        "Integrate comprehensive runbooks for alert handling",
+        "Prune and optimize alert definitions periodically"
+      ]
+    },
+    {
+      "title": "Expand-Contract Database Migration",
+      "category": "DevOps",
+      "description": "Patterns for backward compatibility and atomic operations.",
+      "guidelines": [
+        "Implement expand-contract patterns for schema evolution",
+        "Use transaction-based rollbacks for atomic migration safety",
+        "Apply point-in-time recovery using database snapshots",
+        "Configure blue-green database deployment strategies",
+        "Automate database change management with tools like Liquibase",
+        "Integrate database migrations with GitHub Actions",
+        "Execute canary database deployments for gradual rollout"
+      ]
+    },
+    {
+      "title": "Shift-Left Cost Controls",
+      "category": "DevOps",
+      "description": "Embedded cost controls in CI/CD pipelines.",
+      "guidelines": [
+        "Embed cost controls early in development lifecycle",
+        "Normalize costs across multi-cloud environments",
+        "Automate idle resource cleanup workflows",
+        "Enforce tagging automation and policy compliance",
+        "Decentralize FinOps with shared responsibility models",
+        "Implement real-time cost monitoring and alerting",
+        "Measure business-aligned cost per transaction KPIs"
+      ]
+    }
+  ]
+}
